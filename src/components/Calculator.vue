@@ -29,11 +29,69 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  data() {
+    return {
+      previous: null,
+      display: 0,
+      operator: null,
+      operatorClicked: false
+    };
+  },
+  methods: {
+    clear() {
+      this.display = 0;
+    },
+    sign() {
+      this.display =
+          this.display < 0
+              ? (this.display = this.display - this.display * 2)
+              : (this.display = this.display - this.display * 2);
+    },
+    percent() {
+      this.display = this.display / 100;
+    },
+    append(number) {
+      if (this.operatorClicked === true) {
+        this.display = '';
+        this.operatorClicked = false;
+      }
+      this.display =
+          this.display === 0
+              ? (this.display = number)
+              : '' + this.display + number;
+    },
+    decimal() {
+      if (this.display.indexOf('.') === -1) {
+        this.append('.');
+      }
+    },
+    divide() {
+      this.operator = (a, b) => a / b;
+      this.previous = this.display;
+      this.operatorClicked = true;
+    },
+    multiply() {
+      this.operator = (a, b) => a * b;
+      this.previous = this.display;
+      this.operatorClicked = true;
+    },
+    subtract() {
+      this.operator = (a, b) => a - b;
+      this.previous = this.display;
+      this.operatorClicked = true;
+    },
+    add() {
+      this.operator = (a, b) => a + b;
+      this.previous = this.display;
+      this.operatorClicked = true;
+    },
+    equal() {
+      this.display = this.operator(Number(this.previous), Number(this.display));
+      this.previous = null;
+      this.operatorClicked = true;
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
