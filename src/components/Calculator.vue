@@ -38,18 +38,70 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container {
+  height: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Actor,serif;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.container #calculator {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  background-color: #1d1f20;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.container #calculator #screen {
+  padding-top: 4.5rem;
+  font-size: 2.5rem;
+  text-align: right;
+  padding-right: 3rem;
+  border: none;
+  color: #FFFFFF;
+  background: linear-gradient(180deg, #2C3059 22.08%, #393E73 112.93%);
+  border-radius: 0;
 }
-a {
-  color: #42b983;
+.container #calculator .buttons {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  color: white;
+  flex-wrap: wrap;
+  background: linear-gradient(180deg, #F2736E -24.93%, #F04949 96.2%);
+}
+.container #calculator .buttons .button {
+  width: 25%;
+  padding: 1.5rem 0;
+  text-align: center;
+  box-sizing: border-box;
+  border:1px #ffffff solid;
+  transition: box-shadow 0.3s;
+}
+.container #calculator .buttons .button:nth-child(19) {
+  background: #E33D3D;
+}
+.container #calculator .buttons .button:nth-child(1) {
+  filter: opacity(0.5);
+}
+.container #calculator .buttons .button:nth-child(2) {
+  filter: opacity(0.5);
+}
+.container #calculator .buttons .button:nth-child(3) {
+  filter: opacity(0.5);
+}
+.container #calculator .buttons .button:hover {
+  filter: opacity(0.8);
+}
+.container #calculator .buttons .button:active {
+  box-shadow: 2px 2px 10px #F2736E inset;
+}
+.container #calculator .buttons #zero {
+  text-align: center;
+  padding-left: 2rem;
+  flex-grow: 2;
 }
 </style>
