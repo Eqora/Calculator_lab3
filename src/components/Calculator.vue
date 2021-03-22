@@ -191,13 +191,13 @@ export default {
 .line-copy-5{
   position: absolute;
   width: 1px;
-  height: 390px;
-  left: 445px;
-  top: 535px;
+  height: 38%;
+  left: 50%;
+  top: 53.7%;
 
   mix-blend-mode: normal;
-  opacity: 0.1;
-  border: 1px solid #fffffb;
+  opacity: 0.8;
+  border: 1px solid lawngreen;
 }
 .line-copy-6{
   position: absolute;
@@ -207,8 +207,8 @@ export default {
   top: 535.5px;
 
   mix-blend-mode: normal;
-  opacity: 0.1;
-  border: 1px solid #fffffb;
+  opacity: 0.8;
+  border: 1px solid deeppink;
 }
 .line-copy-2{
   position: absolute;
