@@ -20,5 +20,8 @@ npm run build
 npm run lint
 ```
 
+### Deploy on firebase
+https://vue-calculator-33946.web.app
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
