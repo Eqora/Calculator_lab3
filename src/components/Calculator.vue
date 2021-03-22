@@ -22,6 +22,13 @@
         <div id="zero" @click='append(0)' class='button'>0</div>
         <div @click='decimal' class='button'>.</div>
         <div @click='equal' class='button'>=</div>
+        <div class="line"></div>
+        <div class="line-copy-5"></div>
+        <div class="line-copy-6"></div>
+        <div class="line-copy-2"></div>
+        <div class="line-copy-3"></div>
+        <div class="line-copy-4"></div>
+        <div class="line-copy-7"></div>
       </div>
     </div>
   </div>
@@ -102,6 +109,7 @@ export default {
   align-items: center;
   justify-content: center;
   font-family: Actor,serif;
+
 }
 .container #calculator {
   display: flex;
@@ -136,8 +144,8 @@ export default {
   padding: 1.5rem 0;
   text-align: center;
   box-sizing: border-box;
-  border:1px #ffffff solid;
   transition: box-shadow 0.3s;
+
 }
 .container #calculator .buttons .button:nth-child(19) {
   background: #E33D3D;
@@ -161,5 +169,82 @@ export default {
   text-align: center;
   padding-left: 2rem;
   flex-grow: 2;
+}
+.line{
+  position: absolute;
+  width: 1px;
+  height: 296px;
+  left: 365.5px;
+  top: 535.5px;
+
+  mix-blend-mode: normal;
+  opacity: 0.1;
+  border: 1px solid #ffffff;
+}
+.line-copy-5{
+  position: absolute;
+  width: 1px;
+  height: 390px;
+  left: 445px;
+  top: 535px;
+
+  mix-blend-mode: normal;
+  opacity: 0.1;
+  border: 1px solid #fffffb;
+}
+.line-copy-6{
+  position: absolute;
+  width: 1px;
+  height: 390px;
+  left: 525.5px;
+  top: 535.5px;
+
+  mix-blend-mode: normal;
+  opacity: 0.1;
+  border: 1px solid #fffffb;
+}
+.line-copy-2{
+  position: absolute;
+  width: 415px;
+  height: 3px;
+  left: 287px;
+  top: 830px;
+
+  mix-blend-mode: normal;
+  opacity: 0.1;
+  border: 1px solid #fffffb;
+}
+.line-copy-3{
+  position: absolute;
+  width: 415px;
+  height: 3px;
+  left: 287px;
+  top: 750px;
+
+  mix-blend-mode: normal;
+  opacity: 0.1;
+  border: 1px solid #fffffb;
+}
+.line-copy-4{
+  position: absolute;
+  width: 415px;
+  height: 3px;
+  left: 287px;
+  top: 675px;
+
+  mix-blend-mode: normal;
+  opacity: 0.1;
+  border: 1px solid #fffffb;
+}
+.line-copy-7{
+  position: absolute;
+  width: 415px;
+  height: 3px;
+  left: 287px;
+  top: 600px;
+
+  mix-blend-mode: normal;
+  opacity: 0.1;
+  border: 1px solid #fffffb;
 }
 </style>
