@@ -21,6 +21,10 @@ npm run lint
 ```
 
 ### Deploy on firebase
+```
+npm run build && firebase deploy
+
+```
 https://vue-calculator-33946.web.app
 
 ### Customize configuration
