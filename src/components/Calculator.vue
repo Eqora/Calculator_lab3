@@ -55,7 +55,9 @@ export default {
               : (this.display = this.display - this.display * 2);
     },
     percent() {
-      this.display = this.display / 100;
+      this.operator = (a, b) => a * (b * 0.01);
+      this.previous = this.display;
+      this.operatorClicked = true;
     },
     append(number) {
       if (this.operatorClicked === true) {
@@ -68,6 +70,11 @@ export default {
               : '' + this.display + number;
     },
     decimal() {
+      if(this.display === 0){
+        this.append('0.');
+      } else {
+        this.append('.');
+      }
       if (this.display.indexOf('.') === -1) {
         this.append('.');
       }
@@ -93,7 +100,7 @@ export default {
       this.operatorClicked = true;
     },
     equal() {
-      this.display = this.operator(Number(this.previous), Number(this.display));
+      this.display = (this.operator(Number(this.previous), Number(this.display))).toFixed(4);
       this.previous = null;
       this.operatorClicked = true;
     }
