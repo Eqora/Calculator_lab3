@@ -1,41 +1,44 @@
 <template>
   <div class="container">
     <div id='calculator' onselectstart='return false'>
-      <div id='screen'>{{display}}</div>
+      <screen :display="display"></screen>
+
       <div class="buttons">
-        <div @click='clear' class='button'>C</div>
-        <div @click='sign' class='button'>+/-</div>
-        <div @click='percent' class='button'>%</div>
-        <div @click='divide' class='button'>÷</div>
-        <div @click='append(7)' class='button'>7</div>
-        <div @click='append(8)' class='button'>8</div>
-        <div @click='append(9)' class='button'>9</div>
-        <div @click='multiply' class='button'>x</div>
-        <div @click='append(4)' class='button'>4</div>
-        <div @click='append(5)' class='button'>5</div>
-        <div @click='append(6)' class='button'>6</div>
-        <div @click='subtract' class='button'>-</div>
-        <div @click='append(1)' class='button'>1</div>
-        <div @click='append(2)' class='button'>2</div>
-        <div @click='append(3)' class='button'>3</div>
-        <div @click='add' class='button'>+</div>
-        <div id="zero" @click='append(0)' class='button'>0</div>
-        <div @click='decimal' class='button'>.</div>
-        <div @click='equal' class='button'>=</div>
-        <div class="line"></div>
-        <div class="line-copy-5"></div>
-        <div class="line-copy-6"></div>
-        <div class="line-copy-2"></div>
-        <div class="line-copy-3"></div>
-        <div class="line-copy-4"></div>
-        <div class="line-copy-7"></div>
+        <button-item @press='clear' title="C"></button-item>
+        <button-item @press='sign' title="+/-"></button-item>
+        <button-item @press='percent' title="%"></button-item>
+        <button-item @press='divide' title="÷"></button-item>
+        <button-item @press='append(7)' title="7"></button-item>
+        <button-item @press='append(8)' title="8"></button-item>
+        <button-item @press='append(9)' title="9"></button-item>
+        <button-item @press='multiply' title="x"></button-item>
+        <button-item @press='append(4)' title="4"></button-item>
+        <button-item @press='append(5)' title="5"></button-item>
+        <button-item @press='append(6)' title="6"></button-item>
+        <button-item @press='subtract' title="-"></button-item>
+        <button-item @press='append(1)' title="1"></button-item>
+        <button-item @press='append(2)' title="2"></button-item>
+        <button-item @press='append(3)' title="3"></button-item>
+        <button-item @press='add' title="+"></button-item>
+        <button-item id="zero" @press='append(0)' title="0"></button-item>
+        <button-item @press='decimal' title="."></button-item>
+        <button-item @press='equal' title="="></button-item>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Button from '@/components/Button.vue'
+import Screen from "@/components/Screen";
+
 export default {
+
+  components:{
+    'button-item' : Button,
+    'screen' : Screen
+  },
+
   data() {
     return {
       previous: null,
@@ -124,16 +127,6 @@ export default {
   width: 20rem;
   background-color: #1d1f20;
 }
-.container #calculator #screen {
-  padding-top: 4.5rem;
-  font-size: 2.5rem;
-  text-align: right;
-  padding-right: 3rem;
-  border: none;
-  color: #FFFFFF;
-  background: linear-gradient(180deg, #2C3059 22.08%, #393E73 112.93%);
-  border-radius: 0;
-}
 .container #calculator .buttons {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -146,112 +139,9 @@ export default {
   flex-wrap: wrap;
   background: linear-gradient(180deg, #F2736E -24.93%, #F04949 96.2%);
 }
-.container #calculator .buttons .button {
-  width: 25%;
-  padding: 1.5rem 0;
-  text-align: center;
-  box-sizing: border-box;
-  transition: box-shadow 0.3s;
-
-}
-.container #calculator .buttons .button:nth-child(19) {
-  background: #E33D3D;
-}
-.container #calculator .buttons .button:nth-child(1) {
-  filter: opacity(0.5);
-}
-.container #calculator .buttons .button:nth-child(2) {
-  filter: opacity(0.5);
-}
-.container #calculator .buttons .button:nth-child(3) {
-  filter: opacity(0.5);
-}
-.container #calculator .buttons .button:hover {
-  filter: opacity(0.8);
-}
-.container #calculator .buttons .button:active {
-  box-shadow: 2px 2px 10px #F2736E inset;
-}
 .container #calculator .buttons #zero {
   text-align: center;
   padding-left: 2rem;
   flex-grow: 2;
-}
-.line{
-  position: absolute;
-  width: 1px;
-  height: 296px;
-  left: 365.5px;
-  top: 535.5px;
-
-  mix-blend-mode: normal;
-  opacity: 0.1;
-  border: 1px solid #ffffff;
-}
-.line-copy-5{
-  position: absolute;
-  width: 1px;
-  height: 38%;
-  left: 50%;
-  top: 53.7%;
-
-  mix-blend-mode: normal;
-  opacity: 0.8;
-  border: 1px solid lawngreen;
-}
-.line-copy-6{
-  position: absolute;
-  width: 1px;
-  height: 390px;
-  left: 525.5px;
-  top: 535.5px;
-
-  mix-blend-mode: normal;
-  opacity: 0.8;
-  border: 1px solid deeppink;
-}
-.line-copy-2{
-  position: absolute;
-  width: 415px;
-  height: 3px;
-  left: 287px;
-  top: 830px;
-
-  mix-blend-mode: normal;
-  opacity: 0.1;
-  border: 1px solid #fffffb;
-}
-.line-copy-3{
-  position: absolute;
-  width: 415px;
-  height: 3px;
-  left: 287px;
-  top: 750px;
-
-  mix-blend-mode: normal;
-  opacity: 0.1;
-  border: 1px solid #fffffb;
-}
-.line-copy-4{
-  position: absolute;
-  width: 415px;
-  height: 3px;
-  left: 287px;
-  top: 675px;
-
-  mix-blend-mode: normal;
-  opacity: 0.1;
-  border: 1px solid #fffffb;
-}
-.line-copy-7{
-  position: absolute;
-  width: 415px;
-  height: 3px;
-  left: 287px;
-  top: 600px;
-
-  mix-blend-mode: normal;
-  opacity: 0.1;
-  border: 1px solid #fffffb;
 }
 </style>
