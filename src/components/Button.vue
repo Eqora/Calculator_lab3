@@ -1,10 +1,10 @@
 <template>
-  <div v-if="title" @click="press">{{title}}</div>
+  <div v-if="title" :id="id" @click="press" >{{title}}</div>
 </template>
 
 <script>
 export default {
-  props: ['title'],
+  props: ['title', 'id'],
   methods:{
     press: function (){
       this.$emit('press');
@@ -37,5 +37,10 @@ export default {
   }
   div:active {
     box-shadow: 2px 2px 10px #F2736E inset;
+  }
+  #zero {
+    text-align: center;
+    padding-left: 2rem;
+    flex-grow: 2;
   }
 </style>

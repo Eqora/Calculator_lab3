@@ -4,12 +4,7 @@
 
 <script>
 export default {
-  props: ['display'],
-  data() {
-    return {
-      displayy: 0,
-    };
-  }
+  props: ['display']
 }
 </script>
 

@@ -3,26 +3,9 @@
     <div id='calculator' onselectstart='return false'>
       <screen :display="display"></screen>
 
-      <div class="buttons">
-        <button-item @press='clear' title="C"></button-item>
-        <button-item @press='sign' title="+/-"></button-item>
-        <button-item @press='percent' title="%"></button-item>
-        <button-item @press='divide' title="÷"></button-item>
-        <button-item @press='append(7)' title="7"></button-item>
-        <button-item @press='append(8)' title="8"></button-item>
-        <button-item @press='append(9)' title="9"></button-item>
-        <button-item @press='multiply' title="x"></button-item>
-        <button-item @press='append(4)' title="4"></button-item>
-        <button-item @press='append(5)' title="5"></button-item>
-        <button-item @press='append(6)' title="6"></button-item>
-        <button-item @press='subtract' title="-"></button-item>
-        <button-item @press='append(1)' title="1"></button-item>
-        <button-item @press='append(2)' title="2"></button-item>
-        <button-item @press='append(3)' title="3"></button-item>
-        <button-item @press='add' title="+"></button-item>
-        <button-item id="zero" @press='append(0)' title="0"></button-item>
-        <button-item @press='decimal' title="."></button-item>
-        <button-item @press='equal' title="="></button-item>
+      <div class="buttons" >
+          <button-item v-for="(b, id) in buttons"
+                        :key="id" @press="action(b.title)" :title="b.title" :id="b.id" ></button-item>
       </div>
     </div>
   </div>
@@ -34,9 +17,9 @@ import Screen from "@/components/Screen";
 
 export default {
 
-  components:{
-    'button-item' : Button,
-    'screen' : Screen
+  components: {
+    'button-item': Button,
+    'screen': Screen
   },
 
   data() {
@@ -44,10 +27,63 @@ export default {
       previous: null,
       display: 0,
       operator: null,
-      operatorClicked: false
+      operatorClicked: false,
+      buttons: [
+        {title: "C", press: "clear"},
+        {title: "+/-"},
+        {title: "%"},
+        {title: "÷"},
+        {title: "7", press: "append(7)"},
+        {title: "8", press: "append(8)"},
+        {title: "9", press: "append(9)"},
+        {title: "x"},
+        {title: "4"},
+        {title: "5"},
+        {title: "6"},
+        {title: "-"},
+        {title: "1"},
+        {title: "2"},
+        {title: "3"},
+        {title: "+"},
+        {title: "0", id: "zero"},
+        {title: "."},
+        {title: "="}
+      ]
     };
   },
   methods: {
+    action(title){
+      if(title === 'C'){
+        this.clear();
+      }
+      if(title === '+/-'){
+        this.sign();
+      }
+      if(title === '%'){
+        this.percent();
+      }
+      if(title === '÷'){
+        this.divide();
+      }
+      if(title === 'x'){
+        this.multiply();
+      }
+      if(title === '+'){
+        this.add();
+      }
+      if(title === '-'){
+        this.subtract();
+      }
+      if(title === '.'){
+        this.decimal();
+      }
+      if(title === '='){
+        this.equal();
+      }
+      if(title >= '0' && title <= '9'){
+        this.append(title);
+      }
+    },
     clear() {
       this.display = 0;
     },
@@ -63,6 +99,7 @@ export default {
       this.operatorClicked = true;
     },
     append(number) {
+      console.log(number);
       if (this.operatorClicked === true) {
         this.display = '';
         this.operatorClicked = false;
@@ -73,7 +110,7 @@ export default {
               : '' + this.display + number;
     },
     decimal() {
-      if(this.display === 0){
+      if (this.display === 0) {
         this.append('0.');
       } else {
         this.append('.');
@@ -118,15 +155,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Actor,serif;
+  font-family: Actor, serif;
 
 }
+
 .container #calculator {
   display: flex;
   flex-direction: column;
   width: 20rem;
   background-color: #1d1f20;
 }
+
 .container #calculator .buttons {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -138,10 +177,5 @@ export default {
   color: white;
   flex-wrap: wrap;
   background: linear-gradient(180deg, #F2736E -24.93%, #F04949 96.2%);
-}
-.container #calculator .buttons #zero {
-  text-align: center;
-  padding-left: 2rem;
-  flex-grow: 2;
 }
 </style>
