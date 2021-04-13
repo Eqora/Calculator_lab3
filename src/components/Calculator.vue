@@ -29,13 +29,13 @@ export default {
       operator: null,
       operatorClicked: false,
       buttons: [
-        {title: "C", press: "clear"},
+        {title: "C"},
         {title: "+/-"},
         {title: "%"},
         {title: "÷"},
-        {title: "7", press: "append(7)"},
-        {title: "8", press: "append(8)"},
-        {title: "9", press: "append(9)"},
+        {title: "7"},
+        {title: "8"},
+        {title: "9"},
         {title: "x"},
         {title: "4"},
         {title: "5"},
@@ -45,7 +45,7 @@ export default {
         {title: "2"},
         {title: "3"},
         {title: "+"},
-        {title: "0", id: "zero"},
+        {title: "0"},
         {title: "."},
         {title: "="}
       ]
