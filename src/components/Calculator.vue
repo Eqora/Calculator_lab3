@@ -62,7 +62,7 @@ export default {
         {title: "2"},
         {title: "3"},
         {title: "+"},
-        {title: "0"},
+        {title: "0", id: "zero"},
         {title: "."},
         {title: "="}
       ]
