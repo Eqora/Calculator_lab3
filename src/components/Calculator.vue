@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div id='calculator' onselectstart='return false'>
-      <screen :display="display"></screen>
+      <screen :fontSizeClass="displayFontSize" :display="displayValue"></screen>
 
-      <div class="buttons" >
-          <button-item v-for="(b, id) in buttons"
-                        :key="id" @press="action(b.title)" :title="b.title" :id="b.id" ></button-item>
+      <div class="buttons">
+        <button-item v-for="(b, id) in buttons"
+                     :key="id" @press="action(b.title)" :title="b.title" :id="b.id"></button-item>
       </div>
     </div>
   </div>
@@ -21,13 +21,30 @@ export default {
     'button-item': Button,
     'screen': Screen
   },
+  computed: {
+    displayValue: {
+      get() {
+        return this.display;
+      },
+      set(display) {
 
+        if (this.display === 'undefined' || this.display === 0 || this.display.length < 17) {
+          this.displayFontSize = 'default-font-size';
+        } else {
+
+          this.displayFontSize = 'grippen-font-size';
+        }
+        this.display = display;
+      }
+    }
+  },
   data() {
     return {
       previous: null,
       display: 0,
       operator: null,
       operatorClicked: false,
+      displayFontSize: 'default-font-size',
       buttons: [
         {title: "C"},
         {title: "+/-"},
@@ -52,46 +69,49 @@ export default {
     };
   },
   methods: {
-    action(title){
-      if(title === 'C'){
+    action(title) {
+      if (title === 'C') {
         this.clear();
       }
-      if(title === '+/-'){
+      if (title === '+/-') {
         this.sign();
       }
-      if(title === '%'){
+      if (title === '%') {
         this.percent();
       }
-      if(title === '÷'){
+      if (title === '÷') {
         this.divide();
       }
-      if(title === 'x'){
+      if (title === 'x') {
         this.multiply();
       }
-      if(title === '+'){
+      if (title === '+') {
         this.add();
       }
-      if(title === '-'){
+      if (title === '-') {
         this.subtract();
       }
-      if(title === '.'){
+      if (title === '.') {
         this.decimal();
       }
-      if(title === '='){
+      if (title === '=') {
         this.equal();
       }
-      if(title >= '0' && title <= '9'){
+      if (title >= '0' && title <= '9') {
         this.append(title);
       }
     },
     clear() {
       this.display = 0;
+      this.displayValue = this.display;
+      this.displayFontSize = 'default-font-size';
     },
     sign() {
       this.display =
           this.display < 0
               ? (this.display = this.display - this.display * 2)
               : (this.display = this.display - this.display * 2);
+      this.displayValue = this.display;
     },
     percent() {
       this.operator = (a, b) => a * (b * 0.01);
@@ -99,7 +119,8 @@ export default {
       this.operatorClicked = true;
     },
     append(number) {
-      console.log(number);
+
+
       if (this.operatorClicked === true) {
         this.display = '';
         this.operatorClicked = false;
@@ -108,14 +129,17 @@ export default {
           this.display === 0
               ? (this.display = number)
               : '' + this.display + number;
+      this.displayValue = this.display;
     },
     decimal() {
+
       if (this.display === 0) {
         this.append('0.');
-      } else {
-        this.append('.');
-      }
-      if (this.display.indexOf('.') === -1) {
+      } else if (this.operatorClicked === true) {
+        this.display = 0;
+        this.displayValue = this.display;
+        // this.append('.');
+      } else if (this.display.indexOf('.') === -1) {
         this.append('.');
       }
     },
@@ -141,6 +165,7 @@ export default {
     },
     equal() {
       this.display = (this.operator(Number(this.previous), Number(this.display))).toFixed(4);
+      this.displayValue = this.display;
       this.previous = null;
       this.operatorClicked = true;
     }
